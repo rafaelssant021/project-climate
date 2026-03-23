@@ -4,27 +4,32 @@
     box-sizing: border-box;
 }
 
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
 body{
     font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(135deg, #1e1e2f, #3a3a5a);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
+    background: linear-gradient(-45deg, #1e1e2f, #3a3a5a, #2b5876, #4e4376);
+    background-size: 400% 400%;
     color: white;
-    text-align: center;
-    padding: 50px;
-    transition: 0.5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    animation: gradientMove 10s ease infinite;
 }
 
 .container{
-    background: rgba(0,0,0,0.3);
+    background: rgba(0,0,0,0.4);
     padding: 30px;
-    border-radius: 15px;
+    border-radius: 20px;
     width: 100%;
     max-width: 400px;
-    margin: auto;
-    display: inline-block;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
     animation: aparecer 0.5s ease;
 }
 
@@ -36,41 +41,71 @@ h1{
 input{
     width: 100%;
     margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 8px;
+    padding: 12px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 10px;
     outline: none;
+    background: rgba(255,255,255,0.2);
+    color: white;
+}
+
+input::placeholder{
+  color: rgba(255,255,255,0.6);
 }
 
 button{
     width: 100%;
     margin-top: 5px;
-    padding: 10px 15px;
+    padding: 12px;
     border: none;
-    background: #00c6ff;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
     color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover{
-    background: #0072ff;
-}
-
-p{
-    margin-top: 10px;
+    transform: scale(1.03);
+    opacity: 0.9;
 }
 
 img{
-    width: 100px;
+    width: 90px;
+    margin: 10px 0;
 }
 
 #resultado{
     margin-top: 20px;
 }
 
+#resultado h2{
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+
+.temp{
+  font-size: 42px;
+  font-weight: bold;
+}
+
+.transition-overlay{
+    position: fixed;
+    inset: 0;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    z-index: 10;
+}
+
+.transition-overlay.active{
+    opacity: 0.4;
+}
+
 @media (max-width: 500px) {
   body {
+    height: auto;
     padding: 20px;
   }
 
@@ -79,7 +114,7 @@ img{
   }
 
   .container {
-    padding: 15px;
+    width: 100%;
   }
 
   img {
@@ -95,5 +130,17 @@ img{
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes gradientMove{
+  0%{
+    background-position: 0% 50%;
+  }
+  50%{
+    background-position: 100% 50%;
+  }
+  100%{
+    background-position: 0% 50%;
   }
 }

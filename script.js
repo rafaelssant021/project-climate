@@ -25,13 +25,27 @@ async function buscarClima(){
 
         const clima = dados.weather[0].main;
 
-        if (clima === "Clear") {
-            document.body.style.background = "#f7b733";
-        } else if (clima === "Clouds") {
-            document.body.style.background = "#757f9a";
-        } else if (clima === "Rain") {
-            document.body.style.background = "#005c97";
-        }
+            if (clima === "Clear") {
+            document.body.style.backgroundImage = "linear-gradient(135deg, #fceabb, #f8b500)";
+            } 
+            else if (clima === "Clouds") {
+                document.body.style.backgroundImage = "linear-gradient(135deg, #bdc3c7, #2c3e50)";
+            } 
+            else if (clima === "Rain") {
+                document.body.style.backgroundImage = "linear-gradient(135deg, #4b79a1, #283e51)";
+            } 
+            else if (clima === "Thunderstorm") {
+                document.body.style.backgroundImage = "linear-gradient(135deg, #232526, #414345)";
+            } 
+            else if (clima === "Snow") {
+                document.body.style.backgroundImage = "linear-gradient(135deg, #e6dada, #274046)";
+            } 
+            else if (clima === "Drizzle") {
+                document.body.style.backgroundImage = "linear-gradient(135deg, #89f7fe, #66a6ff)";
+            } 
+            else {
+                document.body.style.backgroundImage = "linear-gradient(135deg, #667eea, #764ba2)";
+            }
 
 
         resultado.innerHTML = `
@@ -42,6 +56,8 @@ async function buscarClima(){
             <p>Umidade: ${dados.main.humidity}%</p>
             <p>Velocidade do vento: ${dados.wind.speed} m/s</p>
         `;
+
+        mostrarClima(dados);
 
     } catch (error){
         console.error(error);
@@ -82,7 +98,8 @@ function mostrarClima(dados) {
 
     const clima = dados.weather[0].main;
 
-    document.body.className = "";
+    trocarClimaComAnimacao(() => {
+        document.body.className = "";
 
     if (clima === "Clear") {
         document.body.classList.add("clear");
@@ -91,13 +108,25 @@ function mostrarClima(dados) {
     } else if (clima === "Rain") {
         document.body.classList.add("rain");
     }
+    })
 
     resultado.innerHTML = `
         <h2>${dados.name}</h2>
         <img src="${urlIcone}">
-        <p>Temperatura: ${dados.main.temp} °C</p>
+        <p class="temp">${dados.main.temp} °C</p>
         <p>Clima: ${dados.weather[0].description}</p>
         <p>Umidade: ${dados.main.humidity}%</p>
         <p>Vento: ${dados.wind.speed} m/s</p>
     `;
+}
+
+function trocarClimaComAnimacao(callback) {
+    const overlay = document.querySelector(".transition-overlay");
+
+    overlay.classList.add("active");
+
+    setTimeout(() => {
+        callback();
+        overlay.classList.remove("active");
+    }, 400);
 }
