@@ -12,7 +12,6 @@ Projeto focado em prática de consumo de APIs e desenvolvimento front-end respon
 - Busca de clima por cidade  
 - Exibição de temperatura atual  
 - Condições climáticas (ex: sol, chuva, nublado)  
-- Previsão para os próximos dias  
 - Layout responsivo (mobile e desktop)  
 
 ---
