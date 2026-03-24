@@ -1,5 +1,37 @@
 const apiKey = '7d131292de5ea2011e325501c772bcf3';
 
+function aplicarTemaNoite(clima){
+    const hora = new Date().getHours();
+    const stars = document.querySelector(".stars");
+
+    if (hora >= 18 || hora < 6){
+
+        if (stars) stars.style.display = "block";
+
+        if (clima === "Clear") {
+            document.body.style.backgroundImage = "linear-gradient(135deg, #0f2027, #203a43, #2c5364)";
+        } 
+        else if (clima === "Clouds") {
+            document.body.style.backgroundImage = "linear-gradient(135deg, #232526, #414345)";
+        } 
+        else if (clima === "Rain") {
+            document.body.style.backgroundImage = "linear-gradient(135deg, #141e30, #243b55)";
+        } 
+        else if (clima === "Thunderstorm") {
+            document.body.style.backgroundImage = "linear-gradient(135deg, #0f2027, #000000)";
+        } 
+        else {
+            document.body.style.backgroundImage = "linear-gradient(135deg, #1a1a2e, #16213e)";
+        }
+
+        return true;
+    }
+
+    if (stars) stars.style.display = "none";
+
+    return false;
+}
+
 
 async function buscarClima(){
     const city = document.getElementById("city").value;
@@ -25,8 +57,18 @@ async function buscarClima(){
 
         const clima = dados.weather[0].main;
 
+        const eNoite = aplicarTemaNoite(clima);
+        const stars = document.querySelector(".stars");
+
+        if(eNoite){
+            stars.style.display = "block";
+        } else {
+            stars.style.display = "none";
+        }
+        
+        if (!eNoite){
             if (clima === "Clear") {
-            document.body.style.backgroundImage = "linear-gradient(135deg, #fceabb, #f8b500)";
+            document.body.style.backgroundImage = "linear-gradient(135deg, #6dc6ef, #ffdb0d)";
             } 
             else if (clima === "Clouds") {
                 document.body.style.backgroundImage = "linear-gradient(135deg, #bdc3c7, #2c3e50)";
@@ -46,7 +88,7 @@ async function buscarClima(){
             else {
                 document.body.style.backgroundImage = "linear-gradient(135deg, #667eea, #764ba2)";
             }
-
+        }    
 
         resultado.innerHTML = `
             <h2>${dados.name}</h2>
