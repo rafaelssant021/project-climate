@@ -1,5 +1,7 @@
 # Project Climate
 
+Link: https://rafaelssant021.github.io/project-climate/
+
 Aplicação web que exibe a previsão do tempo em tempo real utilizando uma API externa.  
 Projeto focado em prática de consumo de APIs e desenvolvimento front-end responsivo.
 
@@ -10,7 +12,6 @@ Projeto focado em prática de consumo de APIs e desenvolvimento front-end respon
 - Busca de clima por cidade  
 - Exibição de temperatura atual  
 - Condições climáticas (ex: sol, chuva, nublado)  
-- Previsão para os próximos dias  
 - Layout responsivo (mobile e desktop)  
 
 ---
