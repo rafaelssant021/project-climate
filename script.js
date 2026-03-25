@@ -68,7 +68,7 @@ async function buscarClima(){
         
         if (!eNoite){
             if (clima === "Clear") {
-            document.body.style.backgroundImage = "linear-gradient(135deg, #6dc6ef, #ffdb0d)";
+            document.body.style.backgroundImage = "linear-gradient(135deg, #f2e890, #ffdc16)";
             } 
             else if (clima === "Clouds") {
                 document.body.style.backgroundImage = "linear-gradient(135deg, #bdc3c7, #2c3e50)";
